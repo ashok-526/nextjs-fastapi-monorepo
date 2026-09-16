@@ -1,0 +1,27 @@
+# syntax=docker/dockerfile:1
+
+FROM node:18-alpine AS deps
+WORKDIR /app
+COPY apps/web/package.json ./package.json
+RUN npm install --legacy-peer-deps
+
+FROM node:18-alpine AS builder
+WORKDIR /app
+ENV NODE_ENV=production
+COPY --from=deps /app/node_modules ./node_modules
+COPY apps/web/ .
+RUN npm run build
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production \
+    PORT=3000
+
+# Use standalone output if present; fallback to next start with full app
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+EXPOSE 3000
+CMD ["node", "server.js"]
+

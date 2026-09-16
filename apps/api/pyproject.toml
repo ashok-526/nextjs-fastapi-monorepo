@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "api"
+version = "0.0.0"
+description = "FastAPI service"
+requires-python = ">=3.10"
+dependencies = [
+  "uvicorn[standard]",
+  "fastapi",
+  "pydantic",
+  "pydantic-settings",
+  "sqlalchemy",
+  "asyncpg",
+  "alembic",
+  "authlib",
+  "passlib[bcrypt]",
+  "python-multipart",
+  "redis",
+  "boto3",
+  "aioboto3",
+  "httpx",
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]

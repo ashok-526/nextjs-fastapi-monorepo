@@ -1,0 +1,32 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "15.x",
+    "react": "*",
+    "react-dom": "*",
+    "@tanstack/react-query": "*",
+    "class-variance-authority": "*",
+    "clsx": "*",
+    "tailwind-merge": "*",
+    "lucide-react": "*"
+  },
+  "devDependencies": {
+    "typescript": "*",
+    "autoprefixer": "*",
+    "postcss": "*",
+    "tailwindcss": "*",
+    "tailwindcss-animate": "*",
+    "eslint": "*",
+    "eslint-config-next": "*"
+  }
+}
+
